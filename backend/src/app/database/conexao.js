@@ -9,7 +9,7 @@ const client = new Client({
   port: 5432,
 });
 
-const conexao = await client.connect();
+await client.connect();
 
 // await client.query(`CREATE TABLE IF NOT EXISTS aluno (
 //   idaluno SERIAL PRIMARY KEY,
@@ -50,7 +50,7 @@ const pool = new Pool({
 // conexao.connect();
 export const consulta = (sql, valores = "", mensagemReject) => {
   return new Promise((resolve) => {
-    conexao.query(sql, valores, (erro, resultado) => {
+    client.query(sql, valores, (erro, resultado) => {
       if (erro) return resolve({ error: mensagemReject });
 
       //parse dos resultados
@@ -60,4 +60,4 @@ export const consulta = (sql, valores = "", mensagemReject) => {
   });
 };
 
-export default conexao;
+export default client;
