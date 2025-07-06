@@ -9,24 +9,26 @@ const client = new Client({
   port: 5432,
 });
 
-await client.connect();
-await client.query(`CREATE TABLE IF NOT EXISTS aluno (
-  idaluno SERIAL PRIMARY KEY,
-  cpf VARCHAR(45) NOT NULL UNIQUE,
-  nome_completo VARCHAR(60) NOT NULL,
-  tel_fixo VARCHAR(45),
-  celular VARCHAR(45),
-  cep VARCHAR(45) NOT NULL,
-  alunocol VARCHAR(45),
-  logradouro VARCHAR(100),
-  numero_casa VARCHAR(6),
-  bairro VARCHAR(45),
-  cidade VARCHAR(45),
-  estado VARCHAR(45),
-  renda_familiar FLOAT,
-  foto BYTEA
-);
-`);
+const conexao = await client.connect();
+
+// await client.query(`CREATE TABLE IF NOT EXISTS aluno (
+//   idaluno SERIAL PRIMARY KEY,
+//   cpf VARCHAR(45) NOT NULL UNIQUE,
+//   nome_completo VARCHAR(60) NOT NULL,
+//   tel_fixo VARCHAR(45),
+//   celular VARCHAR(45),
+//   cep VARCHAR(45) NOT NULL,
+//   alunocol VARCHAR(45),
+//   logradouro VARCHAR(100),
+//   numero_casa VARCHAR(6),
+//   bairro VARCHAR(45),
+//   cidade VARCHAR(45),
+//   estado VARCHAR(45),
+//   renda_familiar FLOAT,
+//   foto BYTEA
+// );
+// `);
+
 console.log("Banco de dados criado com sucesso!");
 
 const pool = new Pool({
@@ -48,7 +50,7 @@ const pool = new Pool({
 // conexao.connect();
 export const consulta = (sql, valores = "", mensagemReject) => {
   return new Promise((resolve) => {
-    pool.query(sql, valores, (erro, resultado) => {
+    conexao.query(sql, valores, (erro, resultado) => {
       if (erro) return resolve({ error: mensagemReject });
 
       //parse dos resultados
@@ -58,4 +60,4 @@ export const consulta = (sql, valores = "", mensagemReject) => {
   });
 };
 
-export default pool;
+export default conexao;

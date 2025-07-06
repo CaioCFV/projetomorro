@@ -9,4 +9,21 @@ const client = new Client({
 });
 
 await client.connect();
-await client.query(`DROP TABLE usuarios;`);
+await client.query(`
+    CREATE TABLE IF NOT EXISTS aluno (
+        idaluno SERIAL PRIMARY KEY,
+        cpf VARCHAR(45) NOT NULL UNIQUE,
+        nome_completo VARCHAR(60) NOT NULL,
+        tel_fixo VARCHAR(45),
+        celular VARCHAR(45),
+        cep VARCHAR(45) NOT NULL,
+        alunocol VARCHAR(45),
+        logradouro VARCHAR(100),
+        numero_casa VARCHAR(6),
+        bairro VARCHAR(45),
+        cidade VARCHAR(45),
+        estado VARCHAR(45),
+        renda_familiar FLOAT,
+        foto BYTEA
+    );
+`);
