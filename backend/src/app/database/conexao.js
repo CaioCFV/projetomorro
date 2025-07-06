@@ -10,14 +10,7 @@ const client = new Client({
 });
 
 await client.connect();
-console.log(client, "deixa eu ver");
-await client.query(`CREATE TABLE usuarios (
-  id SERIAL PRIMARY KEY,
-  nome VARCHAR(100),
-  ativo BOOLEAN,
-  criado_em TIMESTAMP DEFAULT NOW()
-);
-`);
+await client.query(`DROP TABLE usuarios;`);
 // console.log("Banco de dados criado com sucesso!");
 
 const pool = new Pool({
