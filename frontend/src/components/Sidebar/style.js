@@ -44,7 +44,7 @@ export const Menu = styled.ul`
     align-items: center;
     gap: 8px;
     padding: 2px 8px;
-
+    font-size: 14px;
     color: #fff;
     text-decoration: none;
     opacity: 0.7;

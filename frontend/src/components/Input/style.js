@@ -8,19 +8,20 @@ export const Input = styled.input`
   transition: 0.3s;
   color: #fff;
   width: 100%;
-  background: transparent;
+  background: #05070a;
   box-sizing: border-box;
   outline: none;
 
   &:focus {
-    // border: 1px solid var(--theme-color-1);
+    border: 1px solid #f5f5f5;
     // box-shadow: 0px 0px 2px var(--theme-color-1);
   }
 
   &:focus ~ label {
     top: 0;
     font-size: 13px;
-    // color: var(--theme-color-1);
+    color: #fff;
+    background: #0d1017;
   }
 `;
 
@@ -29,10 +30,10 @@ export const Label = styled.label`
   top: 50%;
   transform: translateY(-50%);
   left: 15px;
-  color: #fff;
+  color: #333b4d99;
   transition: 0.3s;
   background: transparent;
-  padding: 0px 5px;
+  padding: 0px 8px;
 `;
 
 export const Fieldset = styled.fieldset`
@@ -44,7 +45,7 @@ export const Fieldset = styled.fieldset`
     font-size: 13px;
     color: #fff;
     opacity: 0.7;
-    background: #05070a;
+    background: #0e1017;
   }
   // #52bc52
 

@@ -5,7 +5,7 @@ export const InputField = function ({ ...params }) {
 
   return (
     <>
-      <Fieldset aria-disabled={empty}>
+      <Fieldset aria-disabled={empty} style={params.style}>
         <Input id={id} {...inputParams} />
         <Label htmlFor={id}>{label}</Label>
       </Fieldset>
