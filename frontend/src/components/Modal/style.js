@@ -7,9 +7,12 @@ export const ModalOverlay = styled.div`
   width: 100%;
   height: 100%;
   background: #05070a;
-  opacity: 0.5;
   z-index: 10;
   transition: 0.3s;
+  ${(props) =>
+    props.isActive
+      ? "opacity: 0.5; visibility: visible;"
+      : "opacity: 0; visibility: hidden;"}
 `;
 
 export const ModalContainer = styled.div`
@@ -22,4 +25,8 @@ export const ModalContainer = styled.div`
   background: #0d1017;
   z-index: 20;
   border-radius: 8px;
+  ${(props) =>
+    props.isActive
+      ? "opacity: 0.5; visibility: visible;"
+      : "opacity: 0; visibility: hidden;"}
 `;

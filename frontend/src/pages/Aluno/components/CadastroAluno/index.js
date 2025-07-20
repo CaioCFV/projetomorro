@@ -11,10 +11,10 @@ export default function CadastroAluno() {
     foto: null,
   });
 
-  const saveAluno = async () => {
+  const saveAluno = async (e) => {
+    e.preventDefault();
     const api = new ServiceAluno();
     const data = await api.post(aluno);
-    alert("aluno salve");
   };
 
   return (
@@ -69,7 +69,7 @@ export default function CadastroAluno() {
               name="celular"
               type="text"
               required={true}
-              value={aluno.cpf}
+              value={aluno.celular}
               onChange={(event) => {
                 setAluno({ ...aluno, celular: event.target.value });
               }}
@@ -195,7 +195,7 @@ export default function CadastroAluno() {
               name="alunocol"
               type="text"
               required={true}
-              value={aluno.cpf}
+              value={aluno.alunocol}
               onChange={(event) => {
                 setAluno({ ...aluno, alunocol: event.target.value });
               }}
