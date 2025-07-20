@@ -1,68 +1,21 @@
-import * as React from "react";
-import { alpha } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import AppNavbar from "./components/AppNavbar";
-import Header from "./components/Header";
-import MainGrid from "./components/MainGrid";
-import SideMenu from "./components/SideMenu";
-import AppTheme from "./shared-theme/AppTheme";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Dashboard, GlobalStyle } from "./style";
+import { Sidebar } from "./components/Sidebar";
 import Aluno from "./pages/Aluno";
 import Curso from "./pages/Curso";
-import {
-  chartsCustomizations,
-  dataGridCustomizations,
-  datePickersCustomizations,
-  //treeViewCustomizations,
-} from "./theme/customizations";
-import Matricula from "./pages/Matricula";
 
-const xThemeComponents = {
-  ...chartsCustomizations,
-  ...dataGridCustomizations,
-  ...datePickersCustomizations,
-  //...treeViewCustomizations,
-};
-
-export default function App(props) {
+export default function App() {
   return (
-    <AppTheme {...props} themeComponents={xThemeComponents}>
-      <CssBaseline enableColorScheme />
-      <Box sx={{ display: "flex" }}>
-        <SideMenu />
-        {/* <AppNavbar /> */}
-        <Box
-          component="main"
-          sx={(theme) => ({
-            flexGrow: 1,
-            backgroundColor: theme.vars
-              ? `rgba(${theme.vars.palette.background.defaultChannel} / 1)`
-              : alpha(theme.palette.background.default, 1),
-            overflow: "auto",
-          })}
-        >
-          <Stack
-            spacing={2}
-            sx={{
-              alignItems: "center",
-              mx: 3,
-              pb: 5,
-              mt: { xs: 8, md: 0 },
-            }}
-          >
-            <Header />
-            <Aluno />
-            <Curso />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <MainGrid />
-          </Stack>
-        </Box>
-      </Box>
-    </AppTheme>
+    <Router>
+      <GlobalStyle />
+      <Dashboard>
+        <Sidebar />
+        <Routes>
+          <Route path="/alunos" Component={Aluno} />
+          <Route path="/curso" Component={Curso} />
+          <Route path="/" />
+        </Routes>
+      </Dashboard>
+    </Router>
   );
 }
