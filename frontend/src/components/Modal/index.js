@@ -1,11 +1,17 @@
-import { ModalOverlay, ModalContainer } from "./style.js";
+import { ModalOverlay, ModalContainer, CloseButton } from "./style.js";
+import Close from "@mui/icons-material/Close";
 
-function Modal({ active, children, handleModal }) {
+function Modal({ isActive, children, handleModal }) {
   return (
     <div>
-      <ModalOverlay isActive={active}></ModalOverlay>
-      <ModalContainer isActive={active}>
-        <button></button>
+      <ModalOverlay
+        isActive={isActive}
+        onClick={() => handleModal(false)}
+      ></ModalOverlay>
+      <ModalContainer isActive={isActive}>
+        <CloseButton onClick={() => handleModal(false)}>
+          <Close />
+        </CloseButton>
         {children}
       </ModalContainer>
     </div>

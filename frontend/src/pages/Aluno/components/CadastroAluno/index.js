@@ -1,25 +1,50 @@
 import { useState } from "react";
-import { Heading1 } from "../../../../components/Typograph";
+import { Heading1, Paragraph } from "../../../../components/Typograph";
 import { InputField } from "../../../../components/Input";
 import { ServiceAluno } from "../../../../service/api";
 import { Button } from "../../../../components/Button";
 import Modal from "../../../../components/Modal";
 import ArrowForward from "@mui/icons-material/ArrowForward";
 
-export default function CadastroAluno() {
+export default function CadastroAluno({ initRefetch }) {
   const [aluno, setAluno] = useState({
     foto: null,
   });
+  const [active, modalActive] = useState(false);
+  const [feedback, setFeedback] = useState("");
 
   const saveAluno = async (e) => {
     e.preventDefault();
     const api = new ServiceAluno();
     const data = await api.post(aluno);
+
+    if (data.error) {
+      if (data.error.sqlMessage.includes("cpf_UNIQUE")) {
+        setFeedback("Não é possível cadastra aluno com o mesmo CPF");
+      }
+    } else {
+      setFeedback("Aluno cadastrado com sucesso");
+      setTimeout(() => {
+        handleModal(false);
+        initRefetch();
+      }, 1000);
+    }
+  };
+
+  const handleModal = (active) => {
+    modalActive(() => active);
   };
 
   return (
     <>
-      <Modal>
+      <Button
+        style={{ marginTop: "25px", width: "200px" }}
+        onClick={() => handleModal(true)}
+      >
+        Cadastrar novo
+        <ArrowForward />
+      </Button>
+      <Modal isActive={active} handleModal={handleModal}>
         <form
           onSubmit={saveAluno}
           style={{
@@ -208,6 +233,13 @@ export default function CadastroAluno() {
             <ArrowForward />
           </Button>
         </form>
+        <Paragraph
+          style={{
+            marginTop: "20px",
+          }}
+        >
+          {feedback}
+        </Paragraph>
       </Modal>
     </>
   );

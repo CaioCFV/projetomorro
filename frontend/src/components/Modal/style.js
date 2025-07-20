@@ -9,6 +9,7 @@ export const ModalOverlay = styled.div`
   background: #05070a;
   z-index: 10;
   transition: 0.3s;
+  cursor: pointer;
   ${(props) =>
     props.isActive
       ? "opacity: 0.5; visibility: visible;"
@@ -27,6 +28,20 @@ export const ModalContainer = styled.div`
   border-radius: 8px;
   ${(props) =>
     props.isActive
-      ? "opacity: 0.5; visibility: visible;"
+      ? "opacity: 1; visibility: visible;"
       : "opacity: 0; visibility: hidden;"}
+`;
+export const CloseButton = styled.button`
+  border: 0;
+  padding: 0;
+  background: transparent;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+  border: 0;
+  svg {
+    color: #fff;
+    width: 25px;
+  }
 `;

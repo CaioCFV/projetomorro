@@ -5,6 +5,8 @@ import { ServiceAluno } from "../../service/api";
 import { Button } from "../../components/Button";
 import Modal from "../../components/Modal";
 import CadastroAluno from "./components/CadastroAluno";
+import TableAlunos from "./components/TableAlunos";
+import ArrowForward from "@mui/icons-material/ArrowForward";
 // import Box from "@mui/material/Box";
 // import Typography from "@mui/material/Typography";
 // // import CustomizedDataGrid from "../../components/CustomizedDataGrid";
@@ -45,37 +47,23 @@ import CadastroAluno from "./components/CadastroAluno";
 export default function Aluno() {
   const [data, setData] = useState([]);
 
-  const [aluno, setAluno] = useState({
-    foto: null,
-  });
-
-  //VALIDAR SE O CPF É O MESMO
-
   const getAlunos = async () => {
     const api = new ServiceAluno();
     const data = await api.get();
     setData(data);
   };
 
-  const saveAluno = async () => {
-    const api = new ServiceAluno();
-    const data = await api.post(aluno);
-    alert("aluno salve");
-  };
-
-  //   {
-  // 	"nome_completo": "Caio Felipe Vieira",
-
-  // 	"renda_familiar": 2500,
-  // }
   useEffect(() => {
     getAlunos();
   }, []);
 
   return (
     <>
-      <Heading1>Cadastro de alunos</Heading1>
-      <CadastroAluno />
+      <Heading1>Alunos</Heading1>
+
+      <TableAlunos rows={data} />
+
+      <CadastroAluno initRefetch={getAlunos} />
     </>
   );
 }
