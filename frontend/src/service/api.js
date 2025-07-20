@@ -44,6 +44,18 @@ export class ServiceCurso extends API {
     response = await response.json();
     return response;
   }
+
+  async post(data) {
+    let response = await fetch(this.route, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+    response = await response.json();
+    return response;
+  }
 }
 
 export class ServiceMatricula extends API {

@@ -12,7 +12,7 @@ export default function App() {
         <Sidebar />
         <Routes>
           <Route path="/alunos" Component={Aluno} />
-          <Route path="/curso" Component={Curso} />
+          <Route path="/cursos" Component={Curso} />
           <Route path="/" />
         </Routes>
       </Dashboard>
