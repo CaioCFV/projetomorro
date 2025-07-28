@@ -1,21 +1,22 @@
 import { useState } from "react";
-import InputField from "../../components/InputField";
 import {
   FullContainer,
   FormContainer,
   PageDescription,
   Logo,
-  Button,
   Cadastro,
   Footer,
 } from "./style.js";
-import { IoIosRocket } from "react-icons/io";
-import { MaxContainer } from "../../util/style-frame";
-import { FaLinkedin, FaGithubSquare, FaInstagram } from "react-icons/fa";
-import { Auth } from "../../api";
+import logo from "../../components/Sidebar/assets/logo.png";
+// import { IoIosRocket } from "react-icons/io";
+// import { MaxContainer } from "../../util/style-frame";
+// import { FaLinkedin, FaGithubSquare, FaInstagram } from "react-icons/fa";
+// import { Auth } from "../../api";
+import { Button } from "../../components/Button";
 import { Link } from "react-router-dom";
+import { InputField } from "../../components/Input/index.js";
 
-function Signin() {
+function Login() {
   const [data, setData] = useState({ username: "", password: "" });
 
   const handleInput = (e) => {
@@ -27,7 +28,7 @@ function Signin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    Auth.login(data);
+    // Auth.login(data);
   };
 
   return (
@@ -35,9 +36,7 @@ function Signin() {
       <div className="gap"></div>
 
       <Logo>
-        <IoIosRocket className="logo-icon" />
-        FastTodo
-        <span>by: Caio F. Vieira</span>
+        <img src={logo} />
       </Logo>
 
       <PageDescription>Login / Cadastro</PageDescription>
@@ -65,43 +64,19 @@ function Signin() {
           empty={data.password === "" ? true : false}
         />
 
-        <Button type="submit">acessar plataforma</Button>
+        <Button type="submit" style={{ width: "100%", marginTop: "20px" }}>
+          Acessar plataforma
+        </Button>
       </FormContainer>
 
-      <Cadastro>
+      {/* <Cadastro>
         <h3 className="title">
           Ainda não é cadastrado?
           <Link to="/signup"> Clique aqui, é muito simples!</Link>
         </h3>
-      </Cadastro>
-
-      <Footer>
-        <MaxContainer>
-          <a
-            href="https://www.linkedin.com/in/caiofvieira"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaLinkedin />
-          </a>
-          <a
-            href="https://github.com/caiocfv"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaGithubSquare />
-          </a>
-          <a
-            href="https://www.instagram.com/caiiuh/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaInstagram />
-          </a>
-        </MaxContainer>
-      </Footer>
+      </Cadastro> */}
     </FullContainer>
   );
 }
 
-export default Signin;
+export default Login;

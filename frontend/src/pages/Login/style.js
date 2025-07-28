@@ -1,63 +1,35 @@
 import styled from "styled-components";
 
 export const FullContainer = styled.main`
-  background: linear-gradient(
-    to left top,
-    var(--theme-color-1),
-    var(--theme-color-7)
-  );
+  background: linear-gradient(to left top, #05070a, #0d1017);
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 50px 0px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 `;
 
 export const Logo = styled.h1`
-  font-family: "Press Start 2P", cursive;
-  color: #fff;
-  font-size: 30px;
-  margin-bottom: 20px;
-
-  span {
-    font-family: "Roboto Mono", monospace;
+  img {
     display: block;
-    font-size: 10px;
-  }
-
-  span:before {
-    content: "";
-    display: block;
-    height: 1px;
-    width: 300px;
-    margin: 3px -20px 8px;
-    background: repeating-linear-gradient(
-      to left,
-      transparent,
-      #fff,
-      transparent
-    );
-  }
-  .logo-icon {
-    display: block;
-    font-size: 50px;
-    margin: 0 auto 10px;
-    opacity: 0.5;
+    width: 200px;
+    margin: 0 auto 40px;
   }
 `;
 
 export const FormContainer = styled.form`
-  background: #fff;
   width: calc(100% - 50px);
   max-width: 500px;
   padding: 50px;
   border-radius: 10px;
-
+  background: #0d1016;
   fieldset + fieldset {
     margin-top: 20px;
   }
-
   @media all and (max-width: 567px) {
     padding: 40px 30px;
   }
@@ -70,22 +42,6 @@ export const PageDescription = styled.h2`
   text-align: center;
   margin-bottom: 50px;
   line-height: 20px;
-`;
-
-export const Button = styled.button`
-  height: 50px;
-  margin-top: 20px;
-  width: 100%;
-  background: var(--theme-color-7);
-  border: unset;
-  color: #fff;
-  cursor: pointer;
-  outline: none;
-  transition: 0.3s;
-
-  &:hover {
-    opacity: 0.9;
-  }
 `;
 
 export const Cadastro = styled.div`

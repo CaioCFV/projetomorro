@@ -3,6 +3,7 @@ import { Dashboard, GlobalStyle } from "./style";
 import { Sidebar } from "./components/Sidebar";
 import Aluno from "./pages/Aluno";
 import Curso from "./pages/Curso";
+import Login from "./pages/Login";
 
 export default function App() {
   return (
@@ -13,7 +14,7 @@ export default function App() {
         <Routes>
           <Route path="/alunos" Component={Aluno} />
           <Route path="/cursos" Component={Curso} />
-          <Route path="/" />
+          <Route path="/login" Component={Login} />
         </Routes>
       </Dashboard>
     </Router>
