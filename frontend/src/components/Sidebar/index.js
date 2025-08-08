@@ -33,7 +33,7 @@ export const Sidebar = function () {
             </Link>
           </li>
           <li>
-            <Link to={"/"}>
+            <Link to={"/matricula"}>
               <AssignmentRoundedIcon />
               Matricula
             </Link>

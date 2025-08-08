@@ -4,6 +4,7 @@ import { Sidebar } from "./components/Sidebar";
 import Aluno from "./pages/Aluno";
 import Curso from "./pages/Curso";
 import Login from "./pages/Login";
+import Matricula from "./pages/Matricula";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/alunos" Component={Aluno} />
           <Route path="/cursos" Component={Curso} />
           <Route path="/login" Component={Login} />
+          <Route path="/matricula" Component={Matricula} />
         </Routes>
       </Dashboard>
     </Router>
