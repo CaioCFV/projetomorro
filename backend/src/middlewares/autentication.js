@@ -1,35 +1,33 @@
-const jwt = require('jsonwebtoken')
-const authConfig = require('../config/auth.json');
+const jwt = require("jsonwebtoken");
+const authConfig = require("../config/auth.json");
 
-module.exports = (req,res,next)=>{
-      const authHeaders = req.headers.pipe_token;
+module.exports = (req, res, next) => {
+  const authHeaders = req.headers.authorization;
 
+  console.log(req.headers);
+  if (!authHeaders) {
+    return res.status(401).send({ error: "token not found" });
+  }
 
-      if(!authHeaders){
-         return res.status(401).send({error:"token not found"})
-      }
+  const part = authHeaders.split(" ");
 
-      const part = authHeaders.split(' ')
+  if (!part.length == 2) {
+    res.status(401).send({ error: "token error" });
+  }
 
-      if(!part.length == 2){
-         res.status(401).send({error:"token error"})
-      }
+  const [scheme, token] = part;
 
-      const [scheme,token] = part;
+  if (!/^Bearer$/i.test(scheme)) {
+    res.status(401).send({ error: "token mal formated" });
+  }
 
-      if(!/^Bearer$/i.test(scheme)){
-         res.status(401).send({error:"token mal formated"})
-      }
-
-      jwt.verify(token,authConfig.secret,(err,decoded)=>{
-         if(err){
-            res.status(401).send({error:"token invalid"})
-         }
-         req.userId = decoded.id;
-         req.userEmail = decoded.email
-         req.userName = decoded.name
-         
-        
-      })
-   return next();
-}
+  jwt.verify(token, authConfig.secret, (err, decoded) => {
+    if (err) {
+      res.status(401).send({ error: "token invalid" });
+    }
+    req.userId = decoded.id;
+    req.userEmail = decoded.email;
+    req.userName = decoded.name;
+  });
+  return next();
+};

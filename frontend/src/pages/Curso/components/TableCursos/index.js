@@ -3,21 +3,13 @@ import { TableStyle } from "./style";
 
 const columns = [
   {
-    field: "nome_curso",
+    field: "name",
     headerName: "Nome",
-    //flex: 0.5,
     minWidth: 150,
   },
   {
-    field: "turno",
-    headerName: "Turno",
-    //flex: 0.5,
-    minWidth: 80,
-  },
-  {
-    field: "descricao",
-    headerName: "Descrição",
-    flex: 1,
+    field: "teacher",
+    headerName: "Professor",
     minWidth: 80,
   },
 ];
@@ -64,7 +56,6 @@ export default function CustomizedDataGrid({ rows }) {
             },
           },
         }}
-        getRowId={(item) => item.idcurso}
       />
     </TableStyle>
   );

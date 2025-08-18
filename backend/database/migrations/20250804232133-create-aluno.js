@@ -28,12 +28,28 @@ module.exports = {
         unique: true,
         allowNull: true,
       },
+      family_income: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       cep: {
         type: Sequelize.STRING(64),
         allowNull: false,
       },
-      renda_familiar: {
+      city: {
+        type: Sequelize.STRING(255),
+        allowNull: false,
+      },
+      house_number: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      neighborhood: {
+        type: Sequelize.STRING(255),
+        allowNull: false,
+      },
+      state: {
+        type: Sequelize.STRING(64),
         allowNull: false,
       },
       created_at: Sequelize.DATE,

@@ -1,26 +1,9 @@
-import { Component } from "react";
-import { Route, Redirect } from "react-router-dom";
-import { Auth } from "../api";
+import { Outlet, Navigate } from "react-router-dom";
+import { Auth } from "../service/api";
 
-export class ProtectedRoute extends Component {
-  render() {
-    const { component: Component, ...rest } = this.props;
-    return (
-      <Route
-        {...rest}
-        setLoading={this.setLoading}
-        render={(props) => {
-          if (Auth.validateUser()) {
-            return <Component {...props} />;
-          } else {
-            return (
-              <Redirect
-                to={{ pathname: "/signin", state: { from: props.location } }}
-              />
-            );
-          }
-        }}
-      />
-    );
-  }
-}
+export const ProtectedRoute = function (props) {
+  const auth = new Auth();
+  const user = auth.validateUser();
+
+  return user ? <Outlet /> : <Navigate to={"/login"} />;
+};

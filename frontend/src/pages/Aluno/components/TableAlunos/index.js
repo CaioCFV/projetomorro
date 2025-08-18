@@ -2,7 +2,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { TableStyle } from "./style";
 const columns = [
   {
-    field: "nome_completo",
+    field: "name",
     headerName: "Nome",
     flex: 0.5,
     minWidth: 80,
@@ -14,13 +14,7 @@ const columns = [
     minWidth: 80,
   },
   {
-    field: "celular",
-    headerName: "Celular",
-    flex: 0.5,
-    minWidth: 80,
-  },
-  {
-    field: "renda_familiar",
+    field: "family_income",
     headerName: "Renda",
     flex: 0.5,
     minWidth: 80,
@@ -69,7 +63,6 @@ export default function CustomizedDataGrid({ rows }) {
             },
           },
         }}
-        getRowId={(item) => item.idaluno}
       />
     </TableStyle>
   );

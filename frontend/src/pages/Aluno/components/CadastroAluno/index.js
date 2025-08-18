@@ -19,7 +19,7 @@ export default function CadastroAluno({ initRefetch }) {
     const data = await api.post(aluno);
 
     if (data.error) {
-      if (data.error.sqlMessage.includes("cpf_UNIQUE")) {
+      if (data.error.sqlMessage?.includes("cpf_UNIQUE")) {
         setFeedback("Não é possível cadastra aluno com o mesmo CPF");
       }
     } else {
@@ -67,38 +67,38 @@ export default function CadastroAluno({ initRefetch }) {
               type="text"
               name="nome_completo"
               required={true}
-              value={aluno.nome_completo}
+              value={aluno.name}
               onChange={(event) => {
-                setAluno({ ...aluno, nome_completo: event.target.value });
+                setAluno({ ...aluno, name: event.target.value });
               }}
-              empty={!aluno.nome_completo ? true : false}
+              empty={!aluno.name ? true : false}
               style={{ gridColumn: "1 / 3" }}
             />
 
             <InputField
-              id="tel_fixo"
+              id="phone"
               label="Telefone"
-              name="tel_fixo"
+              name="phone"
               type="text"
               required={true}
-              value={aluno.tel_fixo}
+              value={aluno.phone}
               onChange={(event) => {
-                setAluno({ ...aluno, tel_fixo: event.target.value });
+                setAluno({ ...aluno, phone: event.target.value });
               }}
-              empty={!aluno.tel_fixo ? true : false}
+              empty={!aluno.phone ? true : false}
             />
 
             <InputField
-              id="celular"
+              id="celphone"
               label="Celular"
-              name="celular"
+              name="celphone"
               type="text"
               required={true}
-              value={aluno.celular}
+              value={aluno.celphone}
               onChange={(event) => {
-                setAluno({ ...aluno, celular: event.target.value });
+                setAluno({ ...aluno, celphone: event.target.value });
               }}
-              empty={!aluno.celular ? true : false}
+              empty={!aluno.celphone ? true : false}
             />
 
             <InputField
@@ -115,16 +115,16 @@ export default function CadastroAluno({ initRefetch }) {
             />
 
             <InputField
-              id="renda_familiar"
+              id="family_income"
               label="Renda Familiar R$"
-              name="renda_familiar"
+              name="family_income"
               type="text"
               required={true}
-              value={aluno.renda_familiar}
+              value={aluno.family_income}
               onChange={(event) => {
-                setAluno({ ...aluno, renda_familiar: event.target.value });
+                setAluno({ ...aluno, family_income: event.target.value });
               }}
-              empty={!aluno.renda_familiar ? true : false}
+              empty={!aluno.family_income ? true : false}
             />
           </div>
 
@@ -151,80 +151,55 @@ export default function CadastroAluno({ initRefetch }) {
               empty={!aluno.cep ? true : false}
             />
             <InputField
-              id="cidade"
+              id="city"
               label="Cidade"
-              name="cidade"
+              name="city"
               type="text"
               required={true}
-              value={aluno.cidade}
+              value={aluno.city}
               onChange={(event) => {
-                setAluno({ ...aluno, cidade: event.target.value });
+                setAluno({ ...aluno, city: event.target.value });
               }}
-              empty={!aluno.cidade ? true : false}
+              empty={!aluno.city ? true : false}
             />
 
             <InputField
-              id="estado"
+              id="state"
               label="Estado"
-              name="estado"
+              name="state"
               type="text"
               required={true}
-              value={aluno.estado}
+              value={aluno.state}
               onChange={(event) => {
-                setAluno({ ...aluno, estado: event.target.value });
+                setAluno({ ...aluno, state: event.target.value });
               }}
-              empty={!aluno.estado ? true : false}
+              empty={!aluno.state ? true : false}
             />
 
             <InputField
-              id="bairro"
+              id="neighborhood"
               label="Bairro"
-              name="bairro"
+              name="neighborhood"
               type="text"
               required={true}
-              value={aluno.bairro}
+              value={aluno.neighborhood}
               onChange={(event) => {
-                setAluno({ ...aluno, bairro: event.target.value });
+                setAluno({ ...aluno, neighborhood: event.target.value });
               }}
-              empty={!aluno.bairro ? true : false}
+              empty={!aluno.neighborhood ? true : false}
             />
 
             <InputField
-              id="numero_casa"
+              id="house_number"
               label="Número"
-              name="numero_casa"
+              name="house_number"
               type="text"
               required={true}
-              value={aluno.numero_casa}
+              value={aluno.house_number}
               onChange={(event) => {
-                setAluno({ ...aluno, numero_casa: event.target.value });
+                setAluno({ ...aluno, house_number: event.target.value });
               }}
-              empty={!aluno.numero_casa ? true : false}
-            />
-
-            <InputField
-              id="logradouro"
-              label="Logradouro"
-              name="logradouro"
-              type="text"
-              required={true}
-              value={aluno.logradouro}
-              onChange={(event) => {
-                setAluno({ ...aluno, logradouro: event.target.value });
-              }}
-              empty={!aluno.logradouro ? true : false}
-            />
-            <InputField
-              id="alunocol"
-              label="Turno"
-              name="alunocol"
-              type="text"
-              required={true}
-              value={aluno.alunocol}
-              onChange={(event) => {
-                setAluno({ ...aluno, alunocol: event.target.value });
-              }}
-              empty={!aluno.alunocol ? true : false}
+              empty={!aluno.house_number ? true : false}
             />
           </div>
 

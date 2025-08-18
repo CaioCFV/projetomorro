@@ -9,7 +9,12 @@ class Student extends Model {
         phone: DataTypes.STRING,
         celphone: DataTypes.STRING,
         cep: DataTypes.STRING,
-        renda_familiar: DataTypes.INTEGER,
+        family_income: DataTypes.INTEGER,
+        cep: DataTypes.STRING,
+        city: DataTypes.STRING,
+        house_number: DataTypes.INTEGER,
+        neighborhood: DataTypes.STRING,
+        state: DataTypes.STRING,
       },
       {
         sequelize,

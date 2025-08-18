@@ -3,7 +3,18 @@ const Student = require("../models/Student");
 module.exports = {
   async store(req, res) {
     try {
-      const { name, cpf, phone, celphone, cep, renda_familiar } = req.body;
+      const {
+        name,
+        cpf,
+        phone,
+        celphone,
+        cep,
+        family_income,
+        city,
+        house_number,
+        neighborhood,
+        state,
+      } = req.body;
 
       const student = Student.build({
         name,
@@ -11,7 +22,11 @@ module.exports = {
         phone,
         celphone,
         cep,
-        renda_familiar,
+        family_income,
+        city,
+        house_number,
+        neighborhood,
+        state,
       });
 
       await student.save();
