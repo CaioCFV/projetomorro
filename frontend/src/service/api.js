@@ -1,5 +1,5 @@
 class API {
-  BASE_URL = process.env.REACT_APP_API_URL + "/api";
+  BASE_URL = "https://projetomorro.onrender.com/api";
   TOKEN_NAME = "Authorization";
 
   request = (url, config) => {
