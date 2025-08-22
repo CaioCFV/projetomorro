@@ -3,7 +3,7 @@ import { Block as B } from "../../pages/Home/style";
 
 export const Container = styled(B)`
   background: var(--color-2);
-  width: 200px;
+  width: 250px;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -56,5 +56,56 @@ export const Menu = styled.ul`
     svg {
       width: 20px;
     }
+  }
+`;
+
+export const UserInfo = styled.div`
+  background: var(--color-1);
+  border-radius: 8px;
+  width: calc(100% - 30px);
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+  box-sizing: border-box;
+
+  p {
+    font-size: 15px;
+    text-transform: capitalize;
+    color: var(--color-4);
+    font-weight: 700;
+  }
+
+  small {
+    font-size: 12px;
+    text-transform: lowercase;
+    color: var(--color-5);
+    margin-top: 5px;
+    display: block;
+  }
+
+  button {
+    border: 0;
+    padding: 0;
+    margin-top: 5px;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  i {
+    min-width: 35px;
+    height: 70px;
+    border-radius: 15px 0 0 15px;
+    display: block;
+    box-shadow: var(--shadow-1);
+    display: flex;
+    align-center: center;
+    justify-content: center;
+    font-size: 25px;
+    background: var(--color-4);
+    color: #fff;
+    line-height: 60px;
+    margin-right: 15px;
   }
 `;

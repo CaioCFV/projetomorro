@@ -3,7 +3,7 @@ import { Heading1 } from "../../components/Typograph";
 import { ServiceAluno } from "../../service/api";
 import CadastroAluno from "./components/CadastroAluno";
 import { Table } from "../../components/Table";
-
+import { Content } from "../Home/style";
 export default function Aluno() {
   const [data, setData] = useState([]);
 
@@ -39,12 +39,31 @@ export default function Aluno() {
   ];
 
   return (
-    <>
-      <Heading1>Alunos</Heading1>
-
-      <Table data={data} columns={columns} />
-
-      <CadastroAluno initRefetch={getAlunos} />
-    </>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "30px",
+        height: "100%",
+      }}
+    >
+      <Content>
+        <Heading1>Alunos</Heading1>
+      </Content>
+      <Content
+        style={{
+          height: "100%",
+          overflow: "auto",
+          height: "100%",
+          flex: "unset",
+          padding: "0",
+        }}
+      >
+        <Table data={data} columns={columns} />
+      </Content>
+      <Content>
+        <CadastroAluno initRefetch={getAlunos} />
+      </Content>
+    </div>
   );
 }

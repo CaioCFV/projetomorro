@@ -2,12 +2,16 @@ import styled from "styled-components";
 
 export const Main = styled.table`
   width: 100%;
-  border: 1px solid #ddd;
-  tr {
-    border: 1px solid #ddd;
+
+  th {
+    border-bottom: 1px solid #ddd;
+    td {
+      font-weight: 700;
+    }
   }
   td {
     padding: 10px;
-    color: #fff;
+    color: var(--color-4);
+    font-size: 13px;
   }
 `;

@@ -15,7 +15,7 @@ class API {
   };
 
   getToken = () => {
-    return JSON.parse(localStorage.getItem(this.TOKEN_NAME)).token;
+    return JSON.parse(localStorage.getItem(this.TOKEN_NAME))?.token;
   };
 
   setToken = (token) => {
@@ -123,6 +123,8 @@ export class Auth extends API {
         })
       );
       window.location.href = "/";
+    } else {
+      window.location.href = "/login";
     }
 
     return response;

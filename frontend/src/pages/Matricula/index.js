@@ -5,6 +5,7 @@ import { ServiceCurso, ServiceMatricula } from "../../service/api";
 import { List, Paragraph, Title, Form } from "./style";
 import Modal from "../../components/Modal";
 import { Button } from "../../components/Button";
+import { Content } from "../Home/style";
 
 const formToJson = function (form) {
   return Object.assign(
@@ -58,10 +59,27 @@ export default function Matricula() {
   }, []);
 
   return (
-    <>
-      <Heading1>Matriculas e cursos</Heading1>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "30px",
+        height: "100%",
+      }}
+    >
+      <Content>
+        <Heading1>Matriculas e cursos</Heading1>
+      </Content>
 
-      <List style={{ color: "#fff" }}>
+      <List
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gridGap: "30px",
+          overflowY: "auto",
+          paddingRight: "50px",
+        }}
+      >
         {courses.map((item) => {
           return (
             <li key={item.name}>
@@ -95,6 +113,6 @@ export default function Matricula() {
           <Button>Salvar</Button>
         </Form>
       </Modal>
-    </>
+    </div>
   );
 }

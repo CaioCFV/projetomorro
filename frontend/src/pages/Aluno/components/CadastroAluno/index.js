@@ -37,10 +37,7 @@ export default function CadastroAluno({ initRefetch }) {
 
   return (
     <>
-      <Button
-        style={{ marginTop: "25px", width: "200px" }}
-        onClick={() => handleModal(true)}
-      >
+      <Button style={{ width: "200px" }} onClick={() => handleModal(true)}>
         Cadastrar novo
         <ArrowForward />
       </Button>
