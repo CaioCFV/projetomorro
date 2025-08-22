@@ -21,5 +21,9 @@ routes.get("/course", CourseController.index);
 const RegistrationController = require("./controllers/RegistrationController");
 routes.post("/registration", RegistrationController.store);
 routes.get("/registration", RegistrationController.index);
-
+routes.get("/registration/:id", RegistrationController.studentsNotRegistred);
+routes.post(
+  "/registration/addStudents/:id",
+  RegistrationController.addStudents
+);
 module.exports = routes;

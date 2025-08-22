@@ -1,37 +1,46 @@
 class API {
-  BASE_URL = "http://localhost:3000/api";
+  BASE_URL = process.env.REACT_APP_API_URL + "/api";
+  TOKEN_NAME = "Authorization";
+
+  request = (url, config) => {
+    return fetch(this.BASE_URL + url, {
+      ...config,
+      headers: this.getHeaders(),
+    }).then((r) => {
+      if (r.status == 401) {
+        window.location.href = "/login";
+      }
+      return r;
+    });
+  };
+
+  getToken = () => {
+    return JSON.parse(localStorage.getItem(this.TOKEN_NAME)).token;
+  };
+
+  setToken = (token) => {
+    return localStorage.setItem(this.TOKEN_NAME, token);
+  };
+
+  getHeaders = () => ({
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + this.getToken(),
+  });
 }
 
-const TOKEN_NAME = "Authorization";
-
-const getToken = () => {
-  return JSON.parse(localStorage.getItem(TOKEN_NAME)).token;
-};
-const setToken = (token) => {
-  return localStorage.setItem(TOKEN_NAME, token);
-};
-
 export class ServiceAluno extends API {
-  route = this.BASE_URL + "/student";
+  route = "/student";
 
   async get() {
-    let response = await fetch(this.route, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + getToken(),
-      },
-    });
+    let response = await this.request(this.route, { headers: this.HEADERS });
     response = await response.json();
     return response;
   }
 
   async post(data) {
-    let response = await fetch(this.route, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + getToken(),
-      },
+    let response = await this.request(this.route, {
       method: "POST",
+      headers: this.HEADERS,
       body: JSON.stringify(data),
     });
     response = await response.json();
@@ -40,25 +49,19 @@ export class ServiceAluno extends API {
 }
 
 export class ServiceCurso extends API {
-  route = this.BASE_URL + "/course";
+  route = "/course";
 
   async get() {
-    let response = await fetch(this.route, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + getToken(),
-      },
+    let response = await this.request(this.route, {
+      headers: this.HEADERS,
     });
     response = await response.json();
     return response;
   }
 
   async post(data) {
-    let response = await fetch(this.route, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + getToken(),
-      },
+    let response = await this.request(this.route, {
+      headers: this.HEADERS,
       method: "POST",
       body: JSON.stringify(data),
     });
@@ -68,14 +71,29 @@ export class ServiceCurso extends API {
 }
 
 export class ServiceMatricula extends API {
-  route = this.BASE_URL + "/api/registration";
+  route = "/registration";
 
   async get() {
-    let response = await fetch(this.route, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + getToken(),
-      },
+    let response = await this.request(this.route, {
+      headers: this.HEADERS,
+    });
+    response = await response.json();
+    return response;
+  }
+
+  async studentsNotRegistred(courseId) {
+    let response = await this.request(this.route + `/${courseId}`, {
+      headers: this.HEADERS,
+    });
+    response = await response.json();
+    return response;
+  }
+
+  async registerStudents(courseId, studentsArray) {
+    let response = await this.request(this.route + `/addStudents/${courseId}`, {
+      headers: this.HEADERS,
+      method: "POST",
+      body: JSON.stringify({ students: studentsArray }),
     });
     response = await response.json();
     return response;
@@ -84,6 +102,7 @@ export class ServiceMatricula extends API {
 
 export class Auth extends API {
   async login(data) {
+    console.log(data);
     let response = await fetch("http://localhost:3000/login", {
       headers: {
         "Content-Type": "application/json",
@@ -94,9 +113,9 @@ export class Auth extends API {
     response = await response.json();
 
     if (response.token) {
-      setToken(response.token);
+      this.setToken(response.token);
       localStorage.setItem(
-        TOKEN_NAME,
+        this.TOKEN_NAME,
         JSON.stringify({
           token: response.token,
           email: response.user.email,
@@ -108,8 +127,9 @@ export class Auth extends API {
 
     return response;
   }
+
   validateUser() {
-    const token = getToken();
+    const token = this.getToken();
     if (!token) {
       return false;
     }

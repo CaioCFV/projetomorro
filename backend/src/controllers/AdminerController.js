@@ -1,4 +1,3 @@
-//const express = require('express');
 const Adminer = require("../models/Adminer");
 const bcrypt = require("bcryptjs");
 const tokenGenerator = require("../config/tokenGenerator");
@@ -9,14 +8,11 @@ module.exports = {
 
     try {
       const user = await Adminer.findOne({ where: { email: email } });
-      console.log("verificando se existe usuario");
-      console.log(user);
       if (user) {
         return res.status(400).send({ error: "user already exist" });
       }
       const newuser = await Adminer.create({ nickname, password_hash, email });
       const token = await tokenGenerator(newuser);
-      console.log("criando usuario");
 
       newuser.password_hash = undefined;
       return res.send({ newuser, token });
@@ -25,27 +21,34 @@ module.exports = {
     }
   },
   async login(req, res) {
-    const { password, email } = req.body;
-    const user = await Adminer.findOne({ where: { email: email } });
-    if (!user) {
-      return res.status(400).send({ error: "User not found" });
-    }
-    if (!password) {
-      return res.status(400).send({ error: "Invalid password" });
-    }
-    if (!email) {
-      return res.status(400).send({ error: "Invalid email" });
-    }
+    try {
+      const { password, email } = req.body;
 
-    const validate = await bcrypt.compare(password, user.password_hash);
+      if (!email || !password) {
+        return res.status(400).send({ error: "User not found" });
+      }
+      const user = await Adminer.findOne({ where: { email: email } });
+      if (!user) {
+        return res.status(400).send({ error: "User not found" });
+      }
+      if (!password) {
+        return res.status(400).send({ error: "Invalid password" });
+      }
+      if (!email) {
+        return res.status(400).send({ error: "Invalid email" });
+      }
 
-    if (!validate) {
-      return res.status(400).send({ error: "email or password invalid" });
+      const validate = await bcrypt.compare(password, user.password_hash);
+      if (!validate) {
+        return res.status(400).send({ error: "email or password invalid" });
+      }
+
+      const token = tokenGenerator(user);
+      user.password_hash = undefined;
+      return res.send({ user, token });
+    } catch (e) {
+      return res.status(500).send(e);
     }
-
-    const token = tokenGenerator(user);
-    user.password_hash = undefined;
-    res.send({ user, token });
   },
   async validate(req, res) {
     const id = req.userId;

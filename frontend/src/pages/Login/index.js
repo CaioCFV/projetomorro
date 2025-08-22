@@ -25,7 +25,6 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const r = await auth.login(data);
-    console.log(r, "");
   };
 
   return (

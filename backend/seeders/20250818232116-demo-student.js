@@ -255,9 +255,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     try {
       return queryInterface.bulkInsert("student", students, {});
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   },
 
   async down(queryInterface, Sequelize) {

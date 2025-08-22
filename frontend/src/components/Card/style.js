@@ -27,6 +27,7 @@ export const Description = styled.p`
   margin-bottom: 15px;
   border-bottom: 1px solid #333b4d99;
   padding-bottom: 15px;
+  min-height: 170px;
 `;
 
 export const Button = styled.button``;

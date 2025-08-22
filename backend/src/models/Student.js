@@ -28,7 +28,7 @@ class Student extends Model {
       foreignKey: "id_student",
       otherKey: "id_course",
       through: "registration",
-      as: "course",
+      as: "courses",
     });
   }
 }

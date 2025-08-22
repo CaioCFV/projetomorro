@@ -4,7 +4,6 @@ const authConfig = require("../config/auth.json");
 module.exports = (req, res, next) => {
   const authHeaders = req.headers.authorization;
 
-  console.log(req.headers);
   if (!authHeaders) {
     return res.status(401).send({ error: "token not found" });
   }
