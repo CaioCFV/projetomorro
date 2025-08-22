@@ -1,20 +1,21 @@
 import styled from "styled-components";
+import { Block as B } from "../../pages/Home/style";
 
-export const Container = styled.aside`
-  background: #0d1017;
-  border-right: 1px solid #333b4d99;
-  width: 240px;
-  height: 100vh;
+export const Container = styled(B)`
+  background: var(--color-2);
+  width: 200px;
+  height: 100%;
   display: flex;
   flex-direction: column;
-  position: fixed;
+  position: sticky;
   left: 0;
-  top: 0;
+  top: 0px;
+  border-radius: var(--radius-1);
+  padding: 0;
 `;
 
 export const Block = styled.div`
-  padding: 12px;
-  border-bottom: 1px solid #333b4d99;
+  padding: 15px;
 `;
 
 export const MenuBlock = styled(Block)`
@@ -22,20 +23,23 @@ export const MenuBlock = styled(Block)`
 `;
 
 export const Image = styled.img`
-  display: block;
   width: 120px;
+  filter: invert(1) brightness(0);
+  display: block;
 `;
 
 export const Menu = styled.ul`
   list-style: none;
-  padding: 8px;
+  padding: 0px;
   margin: 0;
 
   li {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     border-radius: 8px;
     &:hover {
-      background: #47536b33;
+      a {
+        color: var(--color-4);
+      }
     }
   }
 
@@ -43,13 +47,14 @@ export const Menu = styled.ul`
     display: flex;
     align-items: center;
     gap: 8px;
+    font-weight: 600;
     padding: 2px 8px;
-    font-size: 14px;
-    color: #fff;
+    font-size: 15px;
+    color: var(--color-5);
     text-decoration: none;
-    opacity: 0.7;
+    transition: 0.2s;
     svg {
-      width: 16px;
+      width: 20px;
     }
   }
 `;

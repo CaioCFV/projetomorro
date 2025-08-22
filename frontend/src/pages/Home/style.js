@@ -1,13 +1,25 @@
 import styled, { createGlobalStyle } from "styled-components";
 
-export const Dashboard = styled.div`
-  padding-left: 260px;
-  min-height: 100vh;
-  padding-right: 20px;
-  padding-top: 20px;
+export const Block = styled.div`
+  background: var(--color-2);
+  border-radius: var(--radius-1);
+  border-radius: var(--radius-1);
+  box-shadow: var(--shadow-1);
+  padding: 25px;
   box-sizing: border-box;
-  height: 100%;
-  background: #05070a;
+`;
+
+export const Dashboard = styled.div`
+  display: flex;
+  gap: 30px;
+  background: var(--color-1);
+  height: 100vh;
+  padding: 30px;
+  box-sizing: border-box;
+`;
+
+export const Content = styled(Block)`
+  flex: 1;
 `;
 
 export const GlobalStyle = createGlobalStyle`
@@ -55,5 +67,15 @@ export const GlobalStyle = createGlobalStyle`
     table {
       border-collapse: collapse;
       border-spacing: 0;
+    }
+    :root {
+      --color-1: #e3e8ed;
+      --color-2: #fff;
+      --color-3: #e3e7e7;
+      --color-4: #393b4d;
+      --color-5: #9ea0a8;
+      --color-6: #e52e00;
+      --radius-1: 10px;
+      --shadow-1: #00000024 0 0 10px;
     }
 `;

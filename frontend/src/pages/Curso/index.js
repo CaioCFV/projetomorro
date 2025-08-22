@@ -2,8 +2,20 @@ import { useEffect, useState } from "react";
 import { Heading1 } from "../../components/Typograph";
 import { ServiceCurso } from "../../service/api";
 import CadastroCurso from "./components/CadastroCurso";
-import TableCursos from "./components/TableCursos";
+import { Table } from "../../components/Table";
 
+const columns = [
+  {
+    field: "name",
+    headerName: "Nome",
+    minWidth: 150,
+  },
+  {
+    field: "teacher",
+    headerName: "Professor",
+    minWidth: 80,
+  },
+];
 export default function Curso() {
   const [data, setData] = useState([]);
 
@@ -20,7 +32,7 @@ export default function Curso() {
   return (
     <>
       <Heading1>Cursos</Heading1>
-      <TableCursos rows={data} />
+      <Table data={data} columns={columns}></Table>
       <CadastroCurso initRefetch={getCursos} />
     </>
   );
