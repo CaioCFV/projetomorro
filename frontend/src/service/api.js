@@ -15,7 +15,13 @@ class API {
   };
 
   getToken = () => {
-    return JSON.parse(localStorage.getItem(this.TOKEN_NAME))?.token;
+    const storage = localStorage.getItem(this.TOKEN_NAME);
+    if (!storage || !storage.length) {
+      return false;
+    }
+
+    const jsonStorage = json.parse(storage)?.token;
+    return jsonStorage;
   };
 
   setToken = (token) => {
