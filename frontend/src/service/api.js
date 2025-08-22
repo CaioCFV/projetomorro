@@ -20,7 +20,7 @@ class API {
       return false;
     }
 
-    const jsonStorage = json.parse(storage)?.token;
+    const jsonStorage = JSON.parse(storage)?.token;
     return jsonStorage;
   };
 
